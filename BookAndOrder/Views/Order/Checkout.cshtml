@@ -1,0 +1,90 @@
+﻿@model BookAndOrder.ViewModels.OrderViewModels.CheckoutViewModel
+
+<div class="container py-5">
+    <div class="row g-4">
+        @* Customer information *@
+
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0 rounded-4 p-4">
+                <h4 class="fw-bold text-navy mb-4">Deliveryinfo</h4>
+                <form asp-controller="Order" asp-action="PlaceOrder" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Firstname</label>
+                            <input asp-for="FirstName" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-muted small fw-bold">Lastname</label>
+                            <input asp-for="LastName" class="form-control" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label text-muted small fw-bold">Street Address</label>
+                            <input asp-for="Address" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label class="form-label text-muted small fw-bold">City</label>
+                            <input asp-for="City" class="form-control" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-bold">Zip Code</label>
+                            <input asp-for="Postcode" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <h4 class="fw-bold text-navy mb-3 mt-5">Payment</h4>
+                    <div class="p-3 bg-light rounded-3 mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="payment" id="klarna" checked>
+                            <label class="form-check-label fw-bold" for="klarna">
+                                Klarna <span class="badge bg-white text-navy border ms-2">Popular</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow-sm fw-bold">
+                        Pay
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        @* Order Summary *@
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 rounded-4 p-4 sticky-top" style="top: 2rem;">
+                <h4 class="fw-bold text-navy mb-4">Order Summary</h4>
+
+                <div class="mb-4">
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <div class="d-flex justify-content-between mb-2 small">
+                            <span class="text-muted">@item.Quantity x @item.ProductName</span>
+                            <span class="fw-bold">@(item.Price* item.Quantity) kr</span>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-flex justify-content-between mb-2 border-top pt-3">
+                    <span>Subtotal</span>
+                    <span>@Model.TotalAmount kr</span>
+                </div>
+                <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                    <span>Shipping</span>
+                    <span class="text-success fw-bold">Free</span>
+                </div>
+
+                <div class="d-flex justify-content-between mb-4">
+                    <span class="h5 fw-bold text-navy">Total</span>
+                    <span class="h5 fw-bold text-orange">@Model.TotalAmount kr</span>
+                </div>
+
+                <p class="text-center text-muted small">
+                    <i class="bi bi-shield-lock-fill"></i> Secure payments via encrypted connection.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

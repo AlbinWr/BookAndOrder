@@ -1,0 +1,171 @@
+/* --- Root Variables --- */
+:root {
+    --navy: #14213d;
+    --navy-light: #1d2d50;
+    --navy-accent: #133b5c;
+    --orange: #fca311;
+    --orange-hover: #e59400;
+    --light-grey: #e5e5e5;
+    --text-dark: #000000;
+    --bg-light: #f8f9fa;
+}
+
+/* --- Base Elements --- */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* --- Utility Classes --- */
+.text-navy {
+    color: var(--navy) !important;
+}
+
+.text-orange {
+    color: var(--orange) !important;
+}
+
+.bg-navy {
+    background-color: var(--navy) !important;
+}
+
+.bg-orange {
+    background-color: var(--orange) !important;
+}
+
+/* --- Navbar & Navigation --- */
+.navbar-custom {
+    background-color: var(--navy) !important;
+}
+
+.nav-link-simple {
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+    .nav-link-simple:hover {
+        color: var(--orange) !important;
+    }
+
+/* Common Underline Effect (used for Categories on Home) */
+.hover-underline {
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+    .hover-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--orange);
+        transition: width 0.3s ease;
+    }
+
+    .category-link:hover .hover-underline::after,
+    .hover-underline:hover::after {
+        width: 100%;
+    }
+
+.category-link:hover .hover-underline {
+    color: var(--orange) !important;
+    letter-spacing: 2px;
+}
+
+/* --- Buttons & Forms --- */
+.btn-primary {
+    background-color: var(--orange) !important;
+    border-color: var(--orange) !important;
+    color: var(--navy) !important;
+    font-weight: bold;
+}
+
+    .btn-primary:hover {
+        background-color: var(--orange-hover) !important;
+        border-color: var(--orange-hover) !important;
+    }
+
+.btn:focus, .form-control:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* --- Hero Section & Cards --- */
+.hero-slide {
+    height: 450px;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-accent) 100%);
+}
+
+.hero-img {
+    max-height: 300px;
+    transition: transform 0.3s ease;
+}
+
+.hero-slide:hover .hero-img {
+    transform: scale(1.05);
+}
+
+.transition-hover {
+    transition: all 0.2s ease-in-out;
+}
+
+    .transition-hover:hover {
+        background-color: var(--orange) !important;
+        transform: translateY(-3px);
+    }
+
+.view-product {
+    position: relative;
+    z-index: 20;
+}
+
+/* --- Alerts & Messages --- */
+.message-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 350px;
+}
+
+.custom-alert {
+    border: none;
+    border-left: 5px solid;
+    border-radius: 10px;
+    animation: slideIn 0.5s ease forwards;
+}
+
+.alert-success {
+    border-left-color: #28a745;
+}
+
+.alert-danger {
+    border-left-color: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

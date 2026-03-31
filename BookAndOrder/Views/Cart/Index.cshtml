@@ -1,0 +1,96 @@
+﻿@model List<BookAndOrder.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Your Shopping Cart";
+}
+
+<div class="container py-5">
+    <h1 class="mb-4 fw-bold text-navy">Shopping Cart</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="card shadow-sm border-0 rounded-4 p-5 text-center">
+            <i class="bi bi-cart-x text-muted mb-3" style="font-size: 4rem;"></i>
+            <h3 class="text-navy">Your cart is empty</h3>
+            <p class="text-muted mb-4">Looks like you haven't added any products yet.</p>
+            <a asp-controller="Products" asp-action="Index" class="btn btn-primary btn-lg d-block mx-auto w-50 px-5 shadow-sm">
+                Go to Shop
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @* Products *@
+            <div class="col-lg-8">
+                <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                    <table class="table align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr class="text-navy">
+                                <th class="ps-4">Product</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-end pe-4">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="fw-bold text-navy">@item.ProductName</div>
+                                        <small class="text-muted">@item.Price kr / unit</small>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                            <a asp-action="DecreaseQuantity" asp-route-id="@item.ProductId" class="btn btn-sm btn-outline-secondary rounded-circle">-</a>
+                                            <span class="fw-bold mx-2">@item.Quantity</span>
+                                            <a asp-action="IncreaseQuantity" asp-route-id="@item.ProductId" class="btn btn-sm btn-outline-secondary rounded-circle">+</a>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-4 fw-bold text-navy">
+                                        @(item.Price* item.Quantity) kr
+                                    </td>
+                                    <td>
+                                        <a asp-action="RemoveFromCart" asp-route-id="@item.ProductId" class="text-danger me-3">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="p-3 ps-4 border-top">
+                        <a asp-action="ClearCart" class="text-danger small text-decoration-none">
+                            <i class="bi bi-x-circle"></i> Clear Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @* Order Summary *@
+            <div class="col-lg-4">
+                <div class="card shadow-sm border-0 rounded-4 p-4 sticky-top" style="top: 2rem;">
+                    <h4 class="fw-bold text-navy mb-4">Order Summary</h4>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Subtotal</span>
+                        <span>@Model.Sum(x => x.Price * x.Quantity) kr</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                        <span>Shipping</span>
+                        <span class="text-success fw-bold">Free</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="h5 fw-bold text-navy">Total</span>
+                        <span class="h5 fw-bold text-orange">@Model.Sum(x => x.Price * x.Quantity) kr</span>
+                    </div>
+
+                    <a asp-controller="Order" asp-action="Checkout" class="btn btn-primary btn-lg w-100 py-3 shadow-sm fw-bold">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
