@@ -27,11 +27,11 @@ You can use the following account to log in as an Admin:
 ## Bilder
  <img width="1844" height="968" alt="bild" src="https://github.com/user-attachments/assets/b7d4b378-4c38-446c-a7ed-f9b86e23bd87" />
 
- <img width="1841" height="946" alt="bild" src="https://github.com/user-attachments/assets/53ff177a-b146-4e27-85c0-773d99315c79" />
+ <img width="1757" height="925" alt="bild" src="https://github.com/user-attachments/assets/8b7ddec5-eab4-4729-8c0a-19dff41ca4de" />
 
  <img width="1655" height="1039" alt="bild" src="https://github.com/user-attachments/assets/cc58c12b-78e9-4e84-84ae-2b8f4c171405" />
 
- <img width="1687" height="945" alt="bild" src="https://github.com/user-attachments/assets/1eb50cf3-5160-4beb-8e46-70aa6e86669d" />
+ <img width="1670" height="914" alt="bild" src="https://github.com/user-attachments/assets/8ad2ef14-ed96-4008-a4e0-58410dd6b2a5" />
 
  <img width="1599" height="734" alt="bild" src="https://github.com/user-attachments/assets/3fe0b3cd-2e96-45e9-a10f-9eff53176a3e" />
 
