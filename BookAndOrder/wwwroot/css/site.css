@@ -59,6 +59,9 @@ body {
     .nav-link-simple:hover {
         color: var(--orange) !important;
     }
+.dropdown-menu {
+    z-index: 200 !important;
+}
 
 /* Common Underline Effect (used for Categories on Home) */
 .hover-underline {
@@ -104,6 +107,20 @@ body {
 .btn:focus, .form-control:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+
+.btn-qty {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+    .btn-qty:hover {
+        transform: scale(1.1);
+    }
 
 /* --- Hero Section & Cards --- */
 .hero-slide {

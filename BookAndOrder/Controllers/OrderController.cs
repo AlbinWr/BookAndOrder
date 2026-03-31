@@ -33,6 +33,7 @@ namespace BookAndOrder.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> CheckoutAsync()
         {
             var cartItems = _cartService.GetCart();
@@ -60,6 +61,7 @@ namespace BookAndOrder.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PlaceOrder()
         {
             var userId = _userManager.GetUserId(User);

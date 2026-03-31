@@ -29,6 +29,11 @@ namespace BookAndOrder.Controllers
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
+            var referer = Request.Headers["Referer"].ToString();
+            if (!string.IsNullOrEmpty(referer))
+            {
+                return Redirect(referer);
+            }
 
             return RedirectToAction("Index", "Products");
         }
@@ -53,7 +58,14 @@ namespace BookAndOrder.Controllers
 
         public async Task<IActionResult> IncreaseQuantity(int id)
         {
-            await _cartService.IncreaseQuantityAsync(id);
+            try
+            {
+                await _cartService.IncreaseQuantityAsync(id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
             return RedirectToAction("Index");
         }
     }

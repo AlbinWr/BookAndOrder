@@ -14,6 +14,13 @@ namespace BookAndOrder.Repositories
             _context = context;
         }
 
+        public override async Task<Product> GetByIdAsync(int id)
+        {
+            return await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(p => p.ProductId == id);
+        }
+
         public async Task<int> GetStockAsync(int productId)
         {
              return await _context.Products

@@ -18,6 +18,8 @@ namespace BookAndOrder.Controllers
             _categoryRepo = categoryRepo;
             _webHostEnvironment = webHostEnvironment;
         }
+
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string searchString, int? categoryId)
         {
             ViewData["CurrentFilter"] = searchString;
@@ -71,7 +73,7 @@ namespace BookAndOrder.Controllers
             return View(product);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             //Fetch product and related category data
@@ -188,7 +190,7 @@ namespace BookAndOrder.Controllers
             return "/images/products/" + fileName;
         }
 
-        // Helpers
+        // Methods
         private async Task PopulateCategoriesAsync()
         {
             ViewBag.CategoryList = await _categoryRepo.GetAllAsync();

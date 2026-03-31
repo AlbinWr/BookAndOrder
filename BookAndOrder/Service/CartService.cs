@@ -103,6 +103,10 @@ namespace BookAndOrder.Service
                 itemInCart.Quantity += 1;
                 Session.SetObject(CartSessionKey, cart);
             }
+            else
+            {
+                throw new InvalidOperationException("Not enough items in stock.");
+            }
         }
         public int GetCartCount()
         {
