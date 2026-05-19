@@ -1,5 +1,5 @@
 # BookAndOrder
-A modern e-commerce web application built with ASP.NET Core 9.
+A E-commerce web application built with ASP.NET Core 9.
 
 ## Stack
 * **ASP.NET Core 9 (MVC)**
